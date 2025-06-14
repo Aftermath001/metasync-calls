@@ -12,3 +12,4 @@ export default defineSchema({
     }).index("by_clerk_id",["clerkId"]),
 
 })
+//https://discrete-cricket-63.clerk.accounts.dev
