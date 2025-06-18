@@ -10,9 +10,7 @@ import {
 export default function Home() {
   return (
     <div className="m-10">
-     <SignInButton>
-      <Button>Login</Button>
-     </SignInButton>
+     HomePage
     </div>
   );
 }
