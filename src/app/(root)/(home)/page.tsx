@@ -56,7 +56,7 @@ export default function Home() {
         </h1>
         <p className="text-muted-foreground mt-2">
           {isInterviewer
-            ? "Manage your clients effectively"
+            ? "Manage your client's meetings effectively"
             : "Access your upcoming meeting"}
         </p>
       </div>
