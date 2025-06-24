@@ -7,7 +7,7 @@ import { Dialog,
   
   DialogHeader,
   DialogTitle,
-  } from "./ui/dialog";
+  } from "@/components/ui/dialog";
 // import useMeetingActions from "@/hooks/useMeetingActions";
 
 
