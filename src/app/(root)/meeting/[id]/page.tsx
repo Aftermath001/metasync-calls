@@ -8,6 +8,7 @@ import { StreamCall, StreamTheme } from "@stream-io/video-react-sdk";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import useGetCallById from "@/hooks/useGetCallById";
+
 const MeetingPage = () => {
   const { id } = useParams();
   const { isLoaded } = useUser();
@@ -22,17 +23,19 @@ const MeetingPage = () => {
       </div>
     );
   }
-  return 
-  <StreamCall  call={call}>
-    <StreamTheme>
-    {!isSetupComplete ? (
+
+  // ✅ CORRECT return statement
+  return (
+    <StreamCall call={call}>
+      <StreamTheme>
+        {!isSetupComplete ? (
           <MeetingSetup onSetupComplete={() => setIsSetupComplete(true)} />
         ) : (
           <MeetingRoom />
         )}
-    </StreamTheme>
+      </StreamTheme>
+    </StreamCall>
+  );
+};
 
-  </StreamCall>
-}
-
-export default MeetingPage
+export default MeetingPage;
