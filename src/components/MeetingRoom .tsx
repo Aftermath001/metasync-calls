@@ -90,7 +90,7 @@ const MeetingRoom  = () => {
       </ResizablePanel>
       <ResizableHandle withHandle />
       <ResizablePanel defaultSize={35} minSize={25}>
-        <h1> Code Editor will go here</h1>
+        <h1> Code  Editor will go here</h1>
         
       </ResizablePanel>
 
