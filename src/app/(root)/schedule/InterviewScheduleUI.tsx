@@ -49,6 +49,8 @@ function InterviewScheduleUI() {
     interviewerIds: user?.id ? [user.id] : [],
   });
 
+  const [selectedInterviewerId, setSelectedInterviewerId] = useState("");
+
   const scheduleMeeting = async () => {
     if (!client || !user) return;
     if (!formData.candidateId || formData.interviewerIds.length === 0) {
@@ -134,13 +136,10 @@ function InterviewScheduleUI() {
   return (
     <div className="container max-w-7xl mx-auto p-6 space-y-8">
       <div className="flex items-center justify-between">
-        {/* HEADER INFO */}
         <div>
           <h1 className="text-3xl font-bold">Meetings</h1>
-          <p className="text-muted-foreground mt-1">Schedule and manage meetings </p>
+          <p className="text-muted-foreground mt-1">Schedule and manage meetings</p>
         </div>
-
-        {/* DIALOG */}
 
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
@@ -152,7 +151,7 @@ function InterviewScheduleUI() {
               <DialogTitle>Schedule Meeting</DialogTitle>
             </DialogHeader>
             <div className="space-y-4 py-4">
-              {/* INTERVIEW TITLE */}
+              {/* Title */}
               <div className="space-y-2">
                 <label className="text-sm font-medium">Title</label>
                 <Input
@@ -162,7 +161,7 @@ function InterviewScheduleUI() {
                 />
               </div>
 
-              {/* INTERVIEW DESC */}
+              {/* Description */}
               <div className="space-y-2">
                 <label className="text-sm font-medium">Description</label>
                 <Textarea
@@ -173,7 +172,7 @@ function InterviewScheduleUI() {
                 />
               </div>
 
-              {/* CANDIDATE */}
+              {/* Candidate */}
               <div className="space-y-2">
                 <label className="text-sm font-medium">Candidate</label>
                 <Select
@@ -193,7 +192,7 @@ function InterviewScheduleUI() {
                 </Select>
               </div>
 
-              {/* INTERVIEWERS */}
+              {/* Interviewers */}
               <div className="space-y-2">
                 <label className="text-sm font-medium">Interviewers</label>
                 <div className="flex flex-wrap gap-2 mb-2">
@@ -215,7 +214,13 @@ function InterviewScheduleUI() {
                   ))}
                 </div>
                 {availableInterviewers.length > 0 && (
-                  <Select onValueChange={addInterviewer}>
+                  <Select
+                    value={selectedInterviewerId}
+                    onValueChange={(val) => {
+                      addInterviewer(val);
+                      setSelectedInterviewerId("");
+                    }}
+                  >
                     <SelectTrigger>
                       <SelectValue placeholder="Add interviewer" />
                     </SelectTrigger>
@@ -230,9 +235,8 @@ function InterviewScheduleUI() {
                 )}
               </div>
 
-              {/* DATE & TIME */}
+              {/* Date & Time */}
               <div className="flex gap-4">
-                {/* CALENDAR */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Date</label>
                   <Calendar
@@ -243,9 +247,6 @@ function InterviewScheduleUI() {
                     className="rounded-md border"
                   />
                 </div>
-
-                {/* TIME */}
-
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Time</label>
                   <Select
@@ -266,7 +267,7 @@ function InterviewScheduleUI() {
                 </div>
               </div>
 
-              {/* ACTION BUTTONS */}
+              {/* Actions */}
               <div className="flex justify-end gap-3 pt-4">
                 <Button variant="outline" onClick={() => setOpen(false)}>
                   Cancel
@@ -287,7 +288,7 @@ function InterviewScheduleUI() {
         </Dialog>
       </div>
 
-      {/* LOADING STATE & MEETING CARDS */}
+      {/* Meetings list */}
       {!interviews ? (
         <div className="flex justify-center py-12">
           <Loader2Icon className="size-8 animate-spin text-muted-foreground" />
